@@ -1,6 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { EquipmentService } from './equipment.service';
-import { ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { ApiOperation, ApiResponse, ApiQuery } from '@nestjs/swagger';
 
 @Controller('equipment')
 export class EquipmentController {
@@ -16,6 +16,9 @@ export class EquipmentController {
   @Get('status')
   @ApiOperation({ summary: 'Get average equipment status' })
   @ApiResponse({ status: 200, description: 'Return average equipment status.' })
+  @ApiQuery({ name: 'equipmentId', type: Number, required: true, example: 1 })
+  @ApiQuery({ name: 'startDate', type: String, required: true, example: '2023-01-01' })
+  @ApiQuery({ name: 'endDate', type: String, required: true, example: '2023-12-31' })
   async getAverageEquipmentStatus(
     @Query('equipmentId') equipmentId: number,
     @Query('startDate') startDate: string,
@@ -28,6 +31,9 @@ export class EquipmentController {
   @Get('day')
   @ApiOperation({ summary: 'Get average equipment status' })
   @ApiResponse({ status: 200, description: 'Return average equipment status.' })
+  @ApiQuery({ name: 'equipmentId', type: Number, required: true, example: 1 })
+  @ApiQuery({ name: 'startDate', type: String, required: true, example: '2023-01-01' })
+  @ApiQuery({ name: 'endDate', type: String, required: true, example: '2023-12-31' })
   async getManyAverageEquipmentStatusByEachDay(
     @Query('equipmentId') equipmentId: number,
     @Query('startDate') startDate: string,
@@ -37,8 +43,10 @@ export class EquipmentController {
   }
 
   @Get('realtime')
-  @ApiOperation({ summary: 'Get average equipment status' })
-  @ApiResponse({ status: 200, description: 'Return average equipment status.' })
+  @ApiOperation({ summary: 'Get average equipment status by minute' })
+  @ApiResponse({ status: 200, description: 'Return average equipment status by minute.' })
+  @ApiQuery({ name: 'equipmentId', type: Number, required: true, example: 1 })
+  @ApiQuery({ name: 'minute', type: Number, required: true, example: 5 })
   async getManyAverageEquipmentStatusByEachMinute(
     @Query('equipmentId') equipmentId: number,
     @Query('minute') minute: number,
@@ -49,6 +57,9 @@ export class EquipmentController {
   @Get('month')
   @ApiOperation({ summary: 'Get average equipment status' })
   @ApiResponse({ status: 200, description: 'Return average equipment status.' })
+  @ApiQuery({ name: 'equipmentId', type: Number, required: true, example: 1 })
+  @ApiQuery({ name: 'startDate', type: String, required: true, example: '2023-01-01' })
+  @ApiQuery({ name: 'endDate', type: String, required: true, example: '2023-12-31' })
   async getManyAverageEquipmentStatusByEachMonth(
     @Query('equipmentId') equipmentId: number,
     @Query('startDate') startDate: string,

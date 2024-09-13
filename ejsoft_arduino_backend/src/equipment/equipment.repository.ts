@@ -20,6 +20,14 @@ export class EquipmentRepository {
     return await this.equpmentInfoRepository.find();
   }
 
+  async validateEquipmentId(equipmentId: number) {
+    return await this.equpmentInfoRepository
+      .createQueryBuilder()
+      .select('EQUIPMENT_ID')
+      .where('EQUIPMENT_ID = :equipmentId', { equipmentId })
+      .getExists();
+  }
+
   /** 실시간 */
   async getManyAverageEquipmentStatusByEachMinute(equipmentId: number, minute: number) {
     const endDate = dayjs().format('YYYY-MM-DD HH:mm');
