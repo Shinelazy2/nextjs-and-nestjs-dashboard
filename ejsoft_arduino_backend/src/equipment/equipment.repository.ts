@@ -7,7 +7,6 @@ import * as dayjs from 'dayjs';
 import { LogClassMethods } from '@/common/config/func.logging';
 
 @Injectable()
-@LogClassMethods
 export class EquipmentRepository {
   constructor(
     @InjectRepository(EquipmentInfo)

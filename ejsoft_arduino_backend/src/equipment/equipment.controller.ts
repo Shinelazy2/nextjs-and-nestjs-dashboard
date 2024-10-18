@@ -1,6 +1,7 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { EquipmentService } from './equipment.service';
 import { ApiOperation, ApiResponse, ApiQuery } from '@nestjs/swagger';
+import { LogClassMethods } from '@/common/config/func.logging';
 
 @Controller('equipment')
 export class EquipmentController {

@@ -1,6 +1,9 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { EquipmentRepository } from './equipment.repository';
+import { LogClassMethods } from '@/common/config/func.logging';
+
 @Injectable()
+@LogClassMethods
 export class EquipmentService {
   constructor(private readonly equipmentRepository: EquipmentRepository) {}
 
