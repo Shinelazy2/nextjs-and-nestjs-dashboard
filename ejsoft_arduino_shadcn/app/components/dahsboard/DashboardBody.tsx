@@ -78,6 +78,7 @@ interface ChartDataPoint {
 }
 
 interface DashboardBodyProps {
+  activeTab: string;
   dateRange: DateRange | undefined;
   chartType: "monthly" | "daily" | "realtime";
   setDateRange: (dateRange: DateRange | undefined) => void;
@@ -85,6 +86,7 @@ interface DashboardBodyProps {
 }
 
 export default function DashboardBody({
+  activeTab,
   dateRange,
   chartType,
   setDateRange,
@@ -277,26 +279,31 @@ export default function DashboardBody({
 
   return (
     <div>
-      <CardGrid cardData={cardData} />
-      <div className="grid grid-cols-1 gap-6">
-        <div className="flex gap-6">
-          {/* Chart */}
-          <ChartCard
-            chartType={chartType}
-            handleChartTypeChange={handleChartTypeChange}
-            chartData={chartData}
-          />
-          {/* Equipment List */}
-          <EquipmentList
-            filteredEquipmentList={filteredEquipmentList}
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            selectedEquipmentId={selectedEquipmentId}
-            handleEquipmentSelect={handleEquipmentSelect}
-            chartType={chartType}
-          />
-        </div>
-      </div>
+      {activeTab === "Main" && (
+        <>
+          <CardGrid cardData={cardData} />
+          <div className="grid grid-cols-1 gap-6">
+            <div className="flex gap-6">
+              {/* Chart */}
+              <ChartCard
+                chartType={chartType}
+                handleChartTypeChange={handleChartTypeChange}
+                chartData={chartData}
+              />
+              {/* Equipment List */}
+              <EquipmentList
+                filteredEquipmentList={filteredEquipmentList}
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                selectedEquipmentId={selectedEquipmentId}
+                handleEquipmentSelect={handleEquipmentSelect}
+                chartType={chartType}
+              />
+            </div>
+          </div>
+        </>
+      )}
+      {activeTab === "Details" && <div></div>}
     </div>
   );
 }
